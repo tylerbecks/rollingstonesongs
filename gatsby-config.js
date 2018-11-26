@@ -1,8 +1,8 @@
-import albums from './albums';
+const path = require(`path`)
 
 module.exports = {
   siteMetadata: {
-    albums
+    title: "Rolling Stone’s definitive list of the 500 greatest albums of all time"
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -11,6 +11,13 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    `gatsby-transformer-json`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `./data/`,
       },
     },
     'gatsby-transformer-sharp',

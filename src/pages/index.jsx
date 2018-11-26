@@ -1,15 +1,19 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
 
 const IndexPage = ({ data }) => (
   <Layout>
-    <h1>500 Greatest Albums of All Time</h1>
-    {data.site.siteMetadata.albums.forEach(({ band, album, href, rank, recordLabel, year, description }) => (
-      <div></div>
-    ))}
+    <h1>{data.site.siteMetadata.title}</h1>
+    {data.allAlbumsJson.edges.map(
+      ({ node: { band, album, href, rank, recordLabel, year, description } }) => (
+        <div>
+          <h3>{rank}</h3>
+          <h4>{band}</h4>
+        </div>
+      )
+    )}
   </Layout>
 )
 
@@ -17,7 +21,21 @@ export const query = graphql`
   query IndexPageQuery {
     site {
       siteMetadata {
-        albums
+        title
+      }
+    }
+
+    allAlbumsJson {
+      edges {
+        node {
+          band
+          album
+          href
+          rank
+          recordLabel
+          year
+          description
+        }
       }
     }
   }

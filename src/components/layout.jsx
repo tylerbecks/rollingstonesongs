@@ -22,7 +22,7 @@ const Layout = ({ children }) => (
         <Helmet
           title={data.site.siteMetadata.title}
           meta={[
-            { name: 'description', content: 'Rolling Stone Magazine Greatest 500 Albums of all time' },
+            { name: 'description', content: '500 Greatest Albums of all time' },
             { name: 'keywords', content: 'music, albums, top, greatest, best, artists, musicians' },
           ]}
         >
