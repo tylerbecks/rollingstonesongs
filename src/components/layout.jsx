@@ -27,6 +27,7 @@ const Layout = ({ children }) => (
           ]}
         >
           <html lang="en" />
+          <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.0/dist/semantic.min.css" />
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title} />
         <div

@@ -1,30 +1,37 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-
+import { Card, Image } from 'semantic-ui-react'
 import Layout from '../components/layout'
+import './index.css'
 
 const IndexPage = ({ data }) => (
   <Layout>
-    <h1>{data.site.siteMetadata.title}</h1>
-    {data.allAlbumsJson.edges.map(
-      ({ node: { band, album, href, rank, recordLabel, year, description } }) => (
-        <div>
-          <h3>{rank}</h3>
-          <h4>{band}</h4>
-        </div>
-      )
-    )}
+    <div className="album-container">
+      {data.allAlbumsJson.edges.map(
+        ({
+          node: { id, band, album, href, rank, recordLabel, year, description },
+        }) => (
+          <Card key={id}>
+            <Card.Content header={rank} />
+            <Image src={href} />
+            <Card.Content>
+              <Card.Header>{band}, <em>{album}</em></Card.Header>
+              <Card.Meta>
+                <span className="date">{year}, {recordLabel}</span>
+              </Card.Meta>
+              <Card.Description>
+                {description}
+              </Card.Description>
+            </Card.Content>
+          </Card>
+        )
+      )}
+    </div>
   </Layout>
 )
 
 export const query = graphql`
   query IndexPageQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-
     allAlbumsJson {
       edges {
         node {
