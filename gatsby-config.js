@@ -20,6 +20,12 @@ module.exports = {
         path: `./data/`,
       },
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-129771607-1",
+      },
+    },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     {
