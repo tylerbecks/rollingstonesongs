@@ -12,9 +12,10 @@ const IndexPage = ({ data }) => (
         ({
           node: { id, band, album, href, rank, recordLabel, year, description },
         }) => {
-          const spotifyHref = encodeurl(
-            `https://open.spotify.com/search/results/artist%3A${band} album%3A${album}`
-          )
+          // const spotifyHref = encodeurl(
+          //   `https://open.spotify.com/search/results/artist:${band} album:${album}`
+          // )
+          const spotifyHref = `https://open.spotify.com/search/results/artist:${band} album:${album}`;
 
           return (
             <Card key={id}>
