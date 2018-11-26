@@ -1,8 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import encodeurl from 'encodeurl'
-import { Card, Image } from 'semantic-ui-react'
 import Layout from '../components/layout'
+import AlbumCard from '../components/AlbumCard'
 import './index.css'
 
 const IndexPage = ({ data }) => (
@@ -10,31 +9,18 @@ const IndexPage = ({ data }) => (
     <div className="album-container">
       {data.allAlbumsJson.edges.map(
         ({
-          node: { id, band, album, href, rank, recordLabel, year, description },
-        }) => {
-          // const spotifyHref = encodeurl(
-          //   `https://open.spotify.com/search/results/artist:${band} album:${album}`
-          // )
-          const spotifyHref = `https://open.spotify.com/search/results/artist:${band} album:${album}`;
-
-          return (
-            <Card key={id}>
-              <Image src={href} href={spotifyHref} target="_blank" />
-              <Card.Content>
-                <Card.Header content={rank} />
-                <Card.Header href={spotifyHref} target="_blank">
-                  {band}, <em>{album}</em>
-                </Card.Header>
-                <Card.Meta>
-                  <span className="date">
-                    {year}, {recordLabel}
-                  </span>
-                </Card.Meta>
-                <Card.Description>{description}</Card.Description>
-              </Card.Content>
-            </Card>
-          )
-        }
+          node: { id, band, album, imageHref, rank, recordLabel, year, description },
+        }) => (
+          <AlbumCard
+            key={id}
+            imageHref={imageHref}
+            href={getSpotifyHref(band, album)}
+            header={rank}
+            subHeader={<span>{band}, <em>{album}</em></span>}
+            meta={`${year}, ${recordLabel}`}
+            description={description}
+          />
+        )
       )}
     </div>
   </Layout>
@@ -47,7 +33,7 @@ export const query = graphql`
         node {
           band
           album
-          href
+          imageHref
           rank
           recordLabel
           year
@@ -57,5 +43,7 @@ export const query = graphql`
     }
   }
 `
+
+const getSpotifyHref = (band, album) => `https://open.spotify.com/search/results/artist:${band} album:${album}`;
 
 export default IndexPage
