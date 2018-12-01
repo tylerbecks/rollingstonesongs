@@ -9,16 +9,14 @@ const AlbumCard = ({
   description,
   href,
 }) => (
-  <Card key={id}>
+  <Card>
     <Image src={imageHref} href={href} target="_blank" />
     <Card.Content>
       <Card.Header content={header} />
       <Card.Header href={href} target="_blank">
         {subHeader}
       </Card.Header>
-      <Card.Meta>
-        {meta}
-      </Card.Meta>
+      <Card.Meta>{meta}</Card.Meta>
       <Card.Description>{description}</Card.Description>
     </Card.Content>
   </Card>
