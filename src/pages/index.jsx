@@ -35,6 +35,26 @@ export default class IndexPage extends PureComponent {
     this.setState({ filter })
   }
 
+  getFilteredAlbums = () => {
+    const { edges } = this.props.data.allAlbumsJson
+    if (this.state.filter === '') {
+      return edges
+    }
+    return edges.filter(
+      ({ node }) =>
+        this.matchesFilter(node.album) ||
+        this.matchesFilter(node.band) ||
+        this.matchesFilter(node.recordLabel) ||
+        node.rank === Number(this.state.filter) ||
+        node.year === Number(this.state.filter)
+    )
+  }
+
+  matchesFilter = str => {
+    const lowerCaseStr = str.toLowerCase()
+    return lowerCaseStr.match(this.state.filter)
+  }
+
   render() {
     return (
       <Layout>
@@ -43,7 +63,7 @@ export default class IndexPage extends PureComponent {
           onChangeFilter={this.handleChangeFilter}
           filter={this.state.filter}
         />
-        <AlbumsContainer albums={this.props.data.allAlbumsJson.edges} />
+        <AlbumsContainer albums={this.getFilteredAlbums()} />
       </Layout>
     )
   }
