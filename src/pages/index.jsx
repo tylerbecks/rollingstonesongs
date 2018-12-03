@@ -8,6 +8,7 @@ import AlbumsContainer from '../components/AlbumsContainer'
 export default class IndexPage extends PureComponent {
   state = {
     filter: '',
+    filterFields: [],
   }
 
   componentDidMount() {
@@ -35,11 +36,15 @@ export default class IndexPage extends PureComponent {
     this.setState({ filter })
   }
 
+  handleChangeFilterFields = filterFields => {
+    console.log()
+    this.setState({ filterFields })
+  }
+
   getFilteredAlbums = () => {
     const { edges } = this.props.data.allAlbumsJson
-    if (this.state.filter === '') {
-      return edges
-    }
+    if (this.state.filter === '') return edges
+
     return edges.filter(
       ({ node }) =>
         this.matchesFilter(node.album) ||
@@ -62,6 +67,8 @@ export default class IndexPage extends PureComponent {
           siteTitle={this.props.data.site.siteMetadata.title}
           onChangeFilter={this.handleChangeFilter}
           filter={this.state.filter}
+          filterFields={this.state.filterFields}
+          onChangeFilterFields={this.handleChangeFilterFields}
         />
         <AlbumsContainer albums={this.getFilteredAlbums()} />
       </Layout>

@@ -1,7 +1,14 @@
 import React from 'react'
 import FilterInput from './FilterInput'
+import FilterFieldCheckboxes from './FilterFieldCheckboxes'
 
-const Header = ({ siteTitle, onChangeFilter, filter }) => (
+const Header = ({
+  siteTitle,
+  onChangeFilter,
+  filter,
+  filterFields,
+  onChangeFilterFields,
+}) => (
   <div
     style={{
       alignItems: 'center',
@@ -14,6 +21,10 @@ const Header = ({ siteTitle, onChangeFilter, filter }) => (
   >
     <h1 style={{ margin: 0, color: 'white' }}>{siteTitle}</h1>
     <FilterInput onChange={onChangeFilter} value={filter} />
+    <FilterFieldCheckboxes
+      onChange={onChangeFilterFields}
+      values={filterFields}
+    />
   </div>
 )
 

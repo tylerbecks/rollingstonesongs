@@ -1,30 +1,13 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { Input } from 'semantic-ui-react'
 
-export default class FilterInput extends PureComponent {
-  state = {
-    value: '',
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.state.value) {
-      this.setState({ value: nextProps.value })
-    }
-  }
-
-  handleChange = node => {
+const FilterInput = ({ value, onChange }) => {
+  const handleChange = node => {
     const { value } = node.target
-    this.setState({ value })
-    this.props.onChange(value)
+    onChange(value)
   }
 
-  render() {
-    return (
-      <Input
-        type="text"
-        value={this.props.value}
-        onChange={this.handleChange}
-      />
-    )
-  }
+  return <Input type="text" value={value} onChange={handleChange} />
 }
+
+export default FilterInput
