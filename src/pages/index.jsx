@@ -8,14 +8,16 @@ export default class IndexPage extends PureComponent {
   componentDidMount() {
     setTimeout(() => {
       const { hash } = window.location
-      const id = hash.slice(1)
-      const element = document.getElementById(id)
+      if (hash) {
+        const id = hash.slice(1)
+        const element = document.getElementById(id)
 
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center',
-        inline: 'center',
-      })
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+          inline: 'center',
+        })
+      }
     }, 1500)
   }
 
