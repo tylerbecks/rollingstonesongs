@@ -33,6 +33,7 @@ module.exports = {
         icon: 'src/images/rolling-stones-favicon.png', // This path is relative to the root of the site.
       },
     },
+    `gatsby-plugin-jss`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',

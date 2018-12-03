@@ -1,15 +1,23 @@
 import React from 'react'
 import { Form } from 'semantic-ui-react'
+import injectSheet from 'react-jss'
 
-const FilterFieldCheckboxes = ({ values, onChange }) => {
+const styles = {
+  base: {
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'center',
+    maxWidth: [[251], '!important'],
+    marginTop: 10,
+    '& label': {
+      color: [['white'], '!important'],
+    },
+  },
+}
+
+const FilterFieldCheckboxes = ({ classes, values, onChange }) => {
   return (
-    <Form
-      style={{
-        color: 'white',
-        display: 'flex',
-        marginTop: 10,
-      }}
-    >
+    <Form className={classes.base}>
       <FieldCheckBox field="album" allFields={values} onChange={onChange} />
       <FieldCheckBox field="band" allFields={values} onChange={onChange} />
       <FieldCheckBox
@@ -47,4 +55,4 @@ const FieldCheckBox = ({ field, allFields, onChange }) => {
   )
 }
 
-export default FilterFieldCheckboxes
+export default injectSheet(styles)(FilterFieldCheckboxes)
