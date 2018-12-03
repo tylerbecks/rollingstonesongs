@@ -15,13 +15,17 @@ export default class IndexPage extends PureComponent {
 
   componentDidMount() {
     setTimeout(() => {
-      const { hash } = window.location
-      const id = hash.slice(1)
+      const id = this.getBookmarkedId()
 
       if (id) {
         this.scrollToElement(id)
       }
-    }, 1500)
+    }, 2000)
+  }
+
+  getBookmarkedId() {
+    const { hash } = window.location
+    return hash.slice(1)
   }
 
   scrollToElement(id) {
@@ -78,7 +82,10 @@ export default class IndexPage extends PureComponent {
           filterFields={this.state.filterFields}
           onChangeFilterFields={this.handleChangeFilterFields}
         />
-        <AlbumsContainer albums={this.getFilteredAlbums()} />
+        <AlbumsContainer
+          albums={this.getFilteredAlbums()}
+          bookmarkedId={this.getBookmarkedId()}
+        />
       </Layout>
     )
   }

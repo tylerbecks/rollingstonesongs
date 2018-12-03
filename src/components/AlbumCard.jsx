@@ -1,18 +1,29 @@
 import React from 'react'
-import { Card, Image } from 'semantic-ui-react'
+import { Card, Image, Label, Icon } from 'semantic-ui-react'
 
 const AlbumCard = ({
+  bookmarked,
+  description,
+  header,
+  href,
   id,
   imageHref,
-  header,
-  subHeader,
   meta,
-  description,
-  href,
+  subHeader,
 }) => (
   <Card id={id}>
     <Image src={imageHref} href={href} target="_blank" />
     <Card.Content>
+      <Label
+        active
+        as="a"
+        content={<Icon name="bookmark" />}
+        color={bookmarked ? 'green' : 'red'}
+        disabled={bookmarked}
+        href={`${window.location.origin}/#${id}`}
+        ribbon
+        style={{ marginBottom: 10 }}
+      />
       <Card.Header content={header} />
       <Card.Header href={href} target="_blank">
         {subHeader}

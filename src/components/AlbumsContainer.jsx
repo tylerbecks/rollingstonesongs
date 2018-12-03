@@ -1,34 +1,35 @@
 import React from 'react'
 import AlbumCard from './AlbumCard'
 
-const AlbumsContainer = ({ albums }) => (
+const AlbumsContainer = ({ albums, bookmarkedId }) => (
   <div className="album-container">
     {albums.map(
       ({
         node: {
-          id,
-          band,
           album,
+          band,
+          description,
+          id,
           imageHref,
           rank,
           recordLabel,
           year,
-          description,
         },
       }) => (
         <AlbumCard
-          key={id}
+          bookmarked={Number(bookmarkedId) === rank}
+          description={description}
+          header={rank}
+          href={getSpotifyHref(band, album)}
           id={rank}
           imageHref={imageHref}
-          href={getSpotifyHref(band, album)}
-          header={rank}
+          key={id}
+          meta={`${year}, ${recordLabel}`}
           subHeader={
             <span>
               {band}, <em>{album}</em>
             </span>
           }
-          meta={`${year}, ${recordLabel}`}
-          description={description}
         />
       )
     )}
