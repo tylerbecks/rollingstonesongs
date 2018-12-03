@@ -1,11 +1,9 @@
+import 'normalize.css'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
-import 'normalize.css'
-
 import Header from './header'
-import './layout.css'
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -24,11 +22,17 @@ const Layout = ({ children }) => (
           title={data.site.siteMetadata.title}
           meta={[
             { name: 'description', content: '500 Greatest Albums of all time' },
-            { name: 'keywords', content: 'music, albums, top, greatest, best, artists, musicians' },
+            {
+              name: 'keywords',
+              content: 'music, albums, top, greatest, best, artists, musicians',
+            },
           ]}
         >
           <html lang="en" />
-          <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.0/dist/semantic.min.css" />
+          <link
+            rel="stylesheet"
+            href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.0/dist/semantic.min.css"
+          />
         </Helmet>
         <Header siteTitle={data.site.siteMetadata.title} />
         <div

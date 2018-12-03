@@ -5,6 +5,20 @@ import AlbumCard from '../components/AlbumCard'
 import './index.css'
 
 export default class IndexPage extends PureComponent {
+  componentDidMount() {
+    setTimeout(() => {
+      const { hash } = window.location
+      const id = hash.slice(1)
+      const element = document.getElementById(id)
+
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center',
+      })
+    }, 1500)
+  }
+
   render() {
     return (
       <Layout>
@@ -24,6 +38,7 @@ export default class IndexPage extends PureComponent {
             }) => (
               <AlbumCard
                 key={id}
+                id={rank}
                 imageHref={imageHref}
                 href={getSpotifyHref(band, album)}
                 header={rank}

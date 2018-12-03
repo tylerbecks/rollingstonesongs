@@ -2,6 +2,7 @@ import React from 'react'
 import { Card, Image } from 'semantic-ui-react'
 
 const AlbumCard = ({
+  id,
   imageHref,
   header,
   subHeader,
@@ -9,7 +10,7 @@ const AlbumCard = ({
   description,
   href,
 }) => (
-  <Card>
+  <Card id={id}>
     <Image src={imageHref} href={href} target="_blank" />
     <Card.Content>
       <Card.Header content={header} />
