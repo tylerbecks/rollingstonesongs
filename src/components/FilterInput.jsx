@@ -2,8 +2,8 @@ import React from 'react'
 import { Input } from 'semantic-ui-react'
 
 const FilterInput = ({ value, onChange }) => {
-  const handleChange = node => {
-    const { value } = node.target
+  const handleChange = event => {
+    const { value } = event.target
     onChange(value)
   }
 

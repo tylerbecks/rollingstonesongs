@@ -5,6 +5,8 @@ import Layout from '../components/layout'
 import Header from '../components/Header'
 import AlbumsContainer from '../components/AlbumsContainer'
 
+const ALL_FILTER_FIELDS = ['album', 'band', 'recordLabel', 'rank', 'year']
+
 export default class IndexPage extends PureComponent {
   state = {
     filter: '',
@@ -37,7 +39,6 @@ export default class IndexPage extends PureComponent {
   }
 
   handleChangeFilterFields = filterFields => {
-    console.log()
     this.setState({ filterFields })
   }
 
@@ -45,18 +46,25 @@ export default class IndexPage extends PureComponent {
     const { edges } = this.props.data.allAlbumsJson
     if (this.state.filter === '') return edges
 
-    return edges.filter(
-      ({ node }) =>
-        this.matchesFilter(node.album) ||
-        this.matchesFilter(node.band) ||
-        this.matchesFilter(node.recordLabel) ||
-        node.rank === Number(this.state.filter) ||
-        node.year === Number(this.state.filter)
-    )
+    const filterFields =
+      this.state.filterFields.length === 0
+        ? ALL_FILTER_FIELDS
+        : this.state.filterFields
+
+    return edges.filter(({ node }) => {
+      for (const field of filterFields) {
+        if (this.matchesFilter(node[field])) {
+          return true
+        }
+      }
+    })
   }
 
-  matchesFilter = str => {
-    const lowerCaseStr = str.toLowerCase()
+  matchesFilter = value => {
+    if (!value) return false
+
+    let valueStr = Number.isInteger(value) ? value.toString() : value
+    const lowerCaseStr = valueStr.toLowerCase()
     return lowerCaseStr.match(this.state.filter)
   }
 
