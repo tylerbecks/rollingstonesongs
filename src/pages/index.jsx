@@ -65,7 +65,7 @@ export default class IndexPage extends PureComponent {
 
     let valueStr = Number.isInteger(value) ? value.toString() : value
     const lowerCaseStr = valueStr.toLowerCase()
-    return lowerCaseStr.match(this.state.filter)
+    return lowerCaseStr.match(this.state.filter.toLowerCase())
   }
 
   render() {
