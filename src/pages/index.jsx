@@ -1,60 +1,49 @@
+import './index.css'
 import React, { PureComponent } from 'react'
 import { graphql } from 'gatsby'
 import Layout from '../components/layout'
-import AlbumCard from '../components/AlbumCard'
-import './index.css'
+import Header from '../components/Header'
+import AlbumsContainer from '../components/AlbumsContainer'
 
 export default class IndexPage extends PureComponent {
+  state = {
+    filter: '',
+  }
+
   componentDidMount() {
     setTimeout(() => {
       const { hash } = window.location
-      if (hash) {
-        const id = hash.slice(1)
-        const element = document.getElementById(id)
+      const id = hash.slice(1)
 
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center',
-          inline: 'center',
-        })
+      if (id) {
+        this.scrollToElement(id)
       }
     }, 1500)
+  }
+
+  scrollToElement(id) {
+    const element = document.getElementById(id)
+
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+      inline: 'center',
+    })
+  }
+
+  handleChangeFilter = filter => {
+    this.setState({ filter })
   }
 
   render() {
     return (
       <Layout>
-        <div className="album-container">
-          {this.props.data.allAlbumsJson.edges.map(
-            ({
-              node: {
-                id,
-                band,
-                album,
-                imageHref,
-                rank,
-                recordLabel,
-                year,
-                description,
-              },
-            }) => (
-              <AlbumCard
-                key={id}
-                id={rank}
-                imageHref={imageHref}
-                href={getSpotifyHref(band, album)}
-                header={rank}
-                subHeader={
-                  <span>
-                    {band}, <em>{album}</em>
-                  </span>
-                }
-                meta={`${year}, ${recordLabel}`}
-                description={description}
-              />
-            )
-          )}
-        </div>
+        <Header
+          siteTitle={this.props.data.site.siteMetadata.title}
+          onChangeFilter={this.handleChangeFilter}
+          filter={this.state.filter}
+        />
+        <AlbumsContainer albums={this.props.data.allAlbumsJson.edges} />
       </Layout>
     )
   }
@@ -76,8 +65,11 @@ export const query = graphql`
         }
       }
     }
+
+    site {
+      siteMetadata {
+        title
+      }
+    }
   }
 `
-
-const getSpotifyHref = (band, album) =>
-  `https://open.spotify.com/search/results/artist:${band} album:${album}`

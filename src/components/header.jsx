@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import FilterInput from './FilterInput'
 
-const Header = ({ siteTitle }) => (
+const Header = ({ siteTitle, onChangeFilter, filter }) => (
   <div
     style={{
       background: 'rebeccapurple',
@@ -15,17 +15,8 @@ const Header = ({ siteTitle }) => (
         padding: '1.45rem 1.0875rem',
       }}
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
+      <h1 style={{ margin: 0, color: 'white' }}>{siteTitle}</h1>
+      <FilterInput onChange={onChangeFilter} value={filter} />
     </div>
   </div>
 )

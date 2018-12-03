@@ -2,7 +2,7 @@ const path = require(`path`)
 
 module.exports = {
   siteMetadata: {
-    title: "Rolling Stone’s definitive list of the 500 greatest albums of all time"
+    title: '500 Greatest Albums of All Time',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -16,7 +16,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-129771607-1",
+        trackingId: 'UA-129771607-1',
       },
     },
     'gatsby-transformer-sharp',
