@@ -18,11 +18,18 @@ export default class IndexPage extends PureComponent {
     const bookmarkedId = this.getBookmarkedId()
     this.setState({ bookmarkedId })
 
+    window.onhashchange = this.handleHashChange
+
     setTimeout(() => {
       if (bookmarkedId) {
         this.scrollToElement(bookmarkedId)
       }
     }, 2000)
+  }
+
+  handleHashChange = () => {
+    const bookmarkedId = this.getBookmarkedId()
+    this.setState({ bookmarkedId })
   }
 
   getBookmarkedId() {
