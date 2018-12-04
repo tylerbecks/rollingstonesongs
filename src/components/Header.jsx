@@ -1,25 +1,34 @@
 import React from 'react'
 import FilterInput from './FilterInput'
 import FilterFieldCheckboxes from './FilterFieldCheckboxes'
+import injectSheet from 'react-jss'
+
+const styles = {
+  base: {
+    alignItems: 'center',
+    background: 'rebeccapurple',
+    display: 'flex',
+    flexFlow: 'column noWrap',
+    marginBottom: '1.45rem',
+    padding: '1.45rem 1.0875rem',
+    textAlign: 'center',
+  },
+  header: {
+    color: 'white',
+    margin: '0 0 10 0',
+  },
+}
 
 const Header = ({
+  classes,
   siteTitle,
   onChangeFilter,
   filter,
   filterFields,
   onChangeFilterFields,
 }) => (
-  <div
-    style={{
-      alignItems: 'center',
-      background: 'rebeccapurple',
-      display: 'flex',
-      flexFlow: 'column noWrap',
-      marginBottom: '1.45rem',
-      padding: '1.45rem 1.0875rem',
-    }}
-  >
-    <h1 style={{ margin: 0, color: 'white' }}>{siteTitle}</h1>
+  <div className={classes.base}>
+    <h2 className={classes.header}>{siteTitle}</h2>
     <FilterInput onChange={onChangeFilter} value={filter} />
     <FilterFieldCheckboxes
       onChange={onChangeFilterFields}
@@ -28,4 +37,4 @@ const Header = ({
   </div>
 )
 
-export default Header
+export default injectSheet(styles)(Header)

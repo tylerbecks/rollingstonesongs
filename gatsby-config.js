@@ -1,8 +1,6 @@
-const path = require(`path`)
-
 module.exports = {
   siteMetadata: {
-    title: '500 Greatest Albums of All Time',
+    title: '500 Greatest Albums',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
