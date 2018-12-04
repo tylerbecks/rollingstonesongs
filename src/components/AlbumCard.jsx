@@ -25,7 +25,7 @@ export default class IndexPage extends PureComponent {
           <Label
             as="a"
             content={<Icon name="bookmark" />}
-            color={this.props.bookmarked ? 'green' : 'red'}
+            color={this.props.bookmarked ? 'green' : undefined}
             href={this.state.bookMarkHref}
             ribbon
             style={{ marginBottom: 10 }}
