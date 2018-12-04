@@ -7,7 +7,14 @@ const FilterInput = ({ value, onChange }) => {
     onChange(value)
   }
 
-  return <Input type="text" value={value} onChange={handleChange} />
+  return (
+    <Input
+      icon="search"
+      placeholder="Search..."
+      value={value}
+      onChange={handleChange}
+    />
+  )
 }
 
 export default FilterInput
