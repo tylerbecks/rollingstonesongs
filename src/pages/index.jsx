@@ -1,6 +1,6 @@
-import './index.css'
 import React, { PureComponent } from 'react'
 import { graphql } from 'gatsby'
+import { Container } from 'semantic-ui-react'
 import Layout from '../components/layout'
 import Header from '../components/Header'
 import AlbumsContainer from '../components/AlbumsContainer'
@@ -94,10 +94,12 @@ export default class IndexPage extends PureComponent {
           filterFields={this.state.filterFields}
           onChangeFilterFields={this.handleChangeFilterFields}
         />
-        <AlbumsContainer
-          albums={this.getFilteredAlbums()}
-          bookmarkedId={this.state.bookmarkedId}
-        />
+        <Container>
+          <AlbumsContainer
+            albums={this.getFilteredAlbums()}
+            bookmarkedId={this.state.bookmarkedId}
+          />
+        </Container>
       </Layout>
     )
   }

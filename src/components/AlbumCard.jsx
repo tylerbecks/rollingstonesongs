@@ -15,7 +15,7 @@ export default class IndexPage extends PureComponent {
 
   render() {
     return (
-      <Card id={this.props.id}>
+      <Card id={this.props.id} raised>
         <Image
           src={this.props.imageHref}
           href={this.props.href}

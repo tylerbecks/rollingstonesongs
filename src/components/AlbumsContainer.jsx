@@ -1,8 +1,9 @@
 import React from 'react'
+import { Card } from 'semantic-ui-react'
 import AlbumCard from './AlbumCard'
 
-const AlbumsContainer = ({ albums, bookmarkedId }) => (
-  <div className="album-container">
+const AlbumsContainer = ({ albums, bookmarkedId, classes }) => (
+  <Card.Group centered stackable>
     {albums.map(
       ({
         node: {
@@ -33,7 +34,7 @@ const AlbumsContainer = ({ albums, bookmarkedId }) => (
         />
       )
     )}
-  </div>
+  </Card.Group>
 )
 
 const getSpotifyHref = (band, album) =>
