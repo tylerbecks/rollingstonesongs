@@ -9,23 +9,25 @@ const ALL_FILTER_FIELDS = ['album', 'band', 'recordLabel', 'rank', 'year']
 
 export default class IndexPage extends PureComponent {
   state = {
+    bookmarkedId: undefined,
     filter: '',
     filterFields: [],
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      const id = this.getBookmarkedId()
+    const bookmarkedId = this.getBookmarkedId()
+    this.setState({ bookmarkedId })
 
-      if (id) {
-        this.scrollToElement(id)
+    setTimeout(() => {
+      if (bookmarkedId) {
+        this.scrollToElement(bookmarkedId)
       }
     }, 2000)
   }
 
   getBookmarkedId() {
-    if (typeof window === 'undefined') return
-
+    // Only reference window in componentDidMount
+    // https://www.gatsbyjs.org/docs/debugging-html-builds/#how-to-check-if-code-classlanguage-textwindowcode-is-defined
     const { hash } = window.location
     return hash.slice(1)
   }
@@ -87,7 +89,7 @@ export default class IndexPage extends PureComponent {
         />
         <AlbumsContainer
           albums={this.getFilteredAlbums()}
-          bookmarkedId={this.getBookmarkedId()}
+          bookmarkedId={this.state.bookmarkedId}
         />
       </Layout>
     )

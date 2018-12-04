@@ -8,6 +8,7 @@ export default class IndexPage extends PureComponent {
 
   componentDidMount() {
     // only access window in componentDidMount to ensure this code is running in the browser.  Gatsby build fails on the server side if window is referenced outside here.
+    // https://www.gatsbyjs.org/docs/debugging-html-builds/#how-to-check-if-code-classlanguage-textwindowcode-is-defined
     const bookMarkHref = `${window.location.origin}/#${this.props.id}`
     this.setState({ bookMarkHref })
   }
