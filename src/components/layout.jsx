@@ -3,8 +3,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
+import injectSheet from 'react-jss'
 
-const Layout = ({ children }) => (
+const styles = {
+  base: {
+    background: 'rgb(4, 6, 12)',
+  },
+}
+
+const Layout = ({ children, classes }) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -33,7 +40,7 @@ const Layout = ({ children }) => (
             href="//cdn.jsdelivr.net/npm/semantic-ui@2.4.0/dist/semantic.min.css"
           />
         </Helmet>
-        <div>{children}</div>
+        <div className={classes.base}>{children}</div>
       </>
     )}
   />
@@ -43,4 +50,4 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export default Layout
+export default injectSheet(styles)(Layout)

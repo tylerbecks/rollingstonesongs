@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react'
-import { Card, Image, Label, Icon } from 'semantic-ui-react'
+import { Button, Card, Image, Label, Icon, Popup } from 'semantic-ui-react'
 
 export default class IndexPage extends PureComponent {
   state = {
     bookMarkHref: '',
+    isPopupOpen: false,
   }
 
   componentDidMount() {
@@ -11,6 +12,19 @@ export default class IndexPage extends PureComponent {
     // https://www.gatsbyjs.org/docs/debugging-html-builds/#how-to-check-if-code-classlanguage-textwindowcode-is-defined
     const bookMarkHref = `${window.location.origin}/#${this.props.id}`
     this.setState({ bookMarkHref })
+  }
+
+  showPopup = () => {
+    this.setState({ isPopupOpen: true })
+
+    setTimeout(() => {
+      this.setState({ isPopupOpen: false })
+    }, 1000)
+  }
+
+  handleClickCopyButton = () => {
+    this.props.onClickActionButton()
+    this.showPopup()
   }
 
   render() {
@@ -22,20 +36,35 @@ export default class IndexPage extends PureComponent {
           target="_blank"
         />
         <Card.Content>
-          <Label
-            as="a"
-            content={<Icon name="bookmark" />}
-            color={this.props.bookmarked ? 'green' : undefined}
-            href={this.state.bookMarkHref}
-            ribbon
-            style={{ marginBottom: 10 }}
-          />
           <Card.Header content={this.props.header} />
           <Card.Header href={this.props.href} target="_blank">
             {this.props.subHeader}
           </Card.Header>
           <Card.Meta>{this.props.meta}</Card.Meta>
           <Card.Description>{this.props.description}</Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+          <Label
+            as="a"
+            content={<Icon name="bookmark" />}
+            color={this.props.bookmarked ? 'green' : undefined}
+            href={this.state.bookMarkHref}
+            ribbon
+          />
+          <Popup
+            trigger={<Button icon="spotify" floated="right" />}
+            content={`Copied Spotify search to clipboard`}
+            on="click"
+            open={this.state.isPopupOpen}
+            onOpen={this.handleClickCopyButton}
+            inverted
+            position="top center"
+          />
+          {/* <Button
+            floated="right"
+            icon="spotify"
+            onClick={this.props.onClickActionButton}
+          /> */}
         </Card.Content>
       </Card>
     )

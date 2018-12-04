@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card } from 'semantic-ui-react'
+import copy from 'copy-to-clipboard'
 import AlbumCard from './AlbumCard'
 
 const AlbumsContainer = ({ albums, bookmarkedId, classes }) => (
@@ -26,6 +27,7 @@ const AlbumsContainer = ({ albums, bookmarkedId, classes }) => (
           imageHref={imageHref}
           key={id}
           meta={`${year}, ${recordLabel}`}
+          onClickActionButton={() => handleClickSpotifyButton(band, album)}
           subHeader={
             <span>
               {band}, <em>{album}</em>
@@ -39,5 +41,12 @@ const AlbumsContainer = ({ albums, bookmarkedId, classes }) => (
 
 const getSpotifyHref = (band, album) =>
   `https://open.spotify.com/search/results/artist:${band} album:${album}`
+
+const getSpotifySearchStr = (band, album) => `artist:"${band}" album:"${album}"`
+
+const handleClickSpotifyButton = (band, album) => {
+  const spotifySearchStr = getSpotifySearchStr(band, album)
+  copy(spotifySearchStr)
+}
 
 export default AlbumsContainer

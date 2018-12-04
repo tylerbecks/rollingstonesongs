@@ -6,7 +6,7 @@ import injectSheet from 'react-jss'
 const styles = {
   base: {
     alignItems: 'center',
-    background: 'rebeccapurple',
+    background: 'linear-gradient(rgb(30, 50, 100), rgb(4, 6, 12) 85%)',
     display: 'flex',
     flexFlow: 'column noWrap',
     marginBottom: '1.45rem',
