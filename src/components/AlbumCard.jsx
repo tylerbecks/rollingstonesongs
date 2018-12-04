@@ -20,7 +20,7 @@ const AlbumCard = ({
         content={<Icon name="bookmark" />}
         color={bookmarked ? 'green' : 'red'}
         disabled={bookmarked}
-        href={`${window.location.origin}/#${id}`}
+        href={getBookmarkedHref(id)}
         ribbon
         style={{ marginBottom: 10 }}
       />
@@ -33,5 +33,11 @@ const AlbumCard = ({
     </Card.Content>
   </Card>
 )
+
+const getBookmarkedHref = id => {
+  if (typeof window === 'undefined') return ''
+
+  return `${window.location.origin}/#${id}`
+}
 
 export default AlbumCard
