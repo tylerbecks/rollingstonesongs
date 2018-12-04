@@ -24,6 +24,8 @@ export default class IndexPage extends PureComponent {
   }
 
   getBookmarkedId() {
+    if (typeof window === 'undefined') return
+
     const { hash } = window.location
     return hash.slice(1)
   }
@@ -61,6 +63,7 @@ export default class IndexPage extends PureComponent {
           return true
         }
       }
+      return false
     })
   }
 
