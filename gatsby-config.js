@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: '500 Greatest Albums',
+    title: '500 Greatest songs',
   },
   plugins: [
     'gatsby-plugin-react-helmet',

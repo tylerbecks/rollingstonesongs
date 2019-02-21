@@ -27,10 +27,10 @@ const Layout = ({ children, classes }) => (
         <Helmet
           title={data.site.siteMetadata.title}
           meta={[
-            { name: 'description', content: '500 Greatest Albums of all time' },
+            { name: 'description', content: '500 Greatest songs of all time' },
             {
               name: 'keywords',
-              content: 'music, albums, top, greatest, best, artists, musicians',
+              content: 'music, songs, top, greatest, best, artists, musicians',
             },
           ]}
         >

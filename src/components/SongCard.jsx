@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Button, Card, Image, Label, Icon, Popup } from 'semantic-ui-react'
 
-export default class IndexPage extends PureComponent {
+export default class SongCard extends PureComponent {
   state = {
     bookMarkHref: '',
     isPopupOpen: false,
@@ -60,11 +60,6 @@ export default class IndexPage extends PureComponent {
             inverted
             position="top center"
           />
-          {/* <Button
-            floated="right"
-            icon="spotify"
-            onClick={this.props.onClickActionButton}
-          /> */}
         </Card.Content>
       </Card>
     )

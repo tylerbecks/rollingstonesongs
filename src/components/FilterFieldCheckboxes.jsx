@@ -18,7 +18,7 @@ const styles = {
 const FilterFieldCheckboxes = ({ classes, values, onChange }) => {
   return (
     <Form className={classes.base}>
-      <FieldCheckBox field="album" allFields={values} onChange={onChange} />
+      <FieldCheckBox field="song" allFields={values} onChange={onChange} />
       <FieldCheckBox field="band" allFields={values} onChange={onChange} />
       <FieldCheckBox
         field="recordLabel"

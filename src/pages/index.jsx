@@ -3,9 +3,9 @@ import { graphql } from 'gatsby'
 import { Container } from 'semantic-ui-react'
 import Layout from '../components/layout'
 import Header from '../components/Header'
-import AlbumsContainer from '../components/AlbumsContainer'
+import SongsContainer from '../components/SongsContainer'
 
-const ALL_FILTER_FIELDS = ['album', 'band', 'recordLabel', 'rank', 'year']
+const ALL_FILTER_FIELDS = ['song', 'band', 'recordLabel', 'rank', 'year']
 
 export default class IndexPage extends PureComponent {
   state = {
@@ -57,8 +57,8 @@ export default class IndexPage extends PureComponent {
     this.setState({ filterFields })
   }
 
-  getFilteredAlbums = () => {
-    const { edges } = this.props.data.allAlbumsJson
+  getFilteredSongs = () => {
+    const { edges } = this.props.data.allSongsJson
     if (this.state.filter === '') return edges
 
     const filterFields =
@@ -95,8 +95,8 @@ export default class IndexPage extends PureComponent {
           onChangeFilterFields={this.handleChangeFilterFields}
         />
         <Container>
-          <AlbumsContainer
-            albums={this.getFilteredAlbums()}
+          <SongsContainer
+            songs={this.getFilteredSongs()}
             bookmarkedId={this.state.bookmarkedId}
           />
         </Container>
@@ -107,16 +107,14 @@ export default class IndexPage extends PureComponent {
 
 export const query = graphql`
   query IndexPageQuery {
-    allAlbumsJson {
+    allSongsJson {
       edges {
         node {
           id
           band
-          album
+          song
           imageHref
           rank
-          recordLabel
-          year
           description
         }
       }
